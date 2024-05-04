@@ -1,7 +1,16 @@
 #!/usr/bin/env python
 
 import scapy.all as scapy
+import optparse
 
+def get_arguments():
+    parser = optparse.OptionParser()
+    parser.add_option("--ip", dest = "ip_address", help = "The IP address or range for scanning")
+    (options, arguments) =parser.parse_args()
+    if not options.ip_address:
+        parser.error("[-]Please specify an IP address or IP range. Use --ip")
+    else:
+        return options.ip_address
 
 def scan(ip):
     arp_request = scapy.ARP(pdst = ip) #Creating an ARP packet to send
@@ -14,5 +23,5 @@ def scan(ip):
         print(element[1].psrc + "\t\t"+ element[1].hwsrc)
 
 
-#IP range
-scan("192.168.29.1/24")
+ip = get_arguments()
+scan(ip)
