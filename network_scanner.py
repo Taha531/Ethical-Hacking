@@ -18,8 +18,7 @@ def scan(ip):
     arp_request = scapy.ARP(pdst=ip)  #Creating an ARP packet to send
     broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")  #Setting the destination MAC in the ethernet part
     arp_request_broadcast = broadcast / arp_request  #Combining both the packets
-    answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[
-        0]  #To send packets and receive responses
+    answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[0]  #To send packets and receive responses
 
     clients_list = []
     for element in answered_list:
