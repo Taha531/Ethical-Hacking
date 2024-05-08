@@ -4,7 +4,7 @@ import netfilterqueue
 
 
 def process_packet(packet):
-    print(packet)
+    print(packet.get_payload())
     packet.accept()
 
 
