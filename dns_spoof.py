@@ -1,10 +1,12 @@
 #! /usr/bin/env python
 
 import netfilterqueue
+import scapy.all as scapy
 
 
 def process_packet(packet):
-    print(packet.get_payload())
+    scapy_packet = scapy.IP(packet.get_payload())
+    print(scapy_packet.show())
     packet.accept()
 
 
